@@ -3,9 +3,8 @@ Arduino two wheel balancing robot based on simplefoc library. Full docs comming 
 
 For now you can find the Arduino code and Solidworks files in the repo.
 
-<p>
 <img src="images/balancer_three.jpg" height="300px"> <img src="images/balancer_exploaded.jpg">
-</p>
+
 
 ## Youtube videos of testing:
 <p>
