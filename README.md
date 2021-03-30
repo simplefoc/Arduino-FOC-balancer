@@ -1,14 +1,16 @@
 # Arduino *Simple**FOC**Balancer*
+
+Exiting Arduino two wheel balancing robot based on gimbal BLDC motors and *Simple**FOC**library*.
 <img src="images/balancer_three.jpg">
 
-Modular Arduino two wheel balancing robot based on *Simple**FOC**library*. 
+Balancing robots are always a bit tricky to design, in order to make the robot balance we need to design and tune our mechanical structure and the control algorithm and, in the same time, choose optimal motors, sensors and microcontrollers. Therefore, even though BLDC motors are a great choice for balancing robots the complexity of their control made them undesirable. So this robot is an attempt to create a simple and modular, BLDC motor based, balancing robot that can be easily adapted for different *motor+sensor+mcu+driver* combinations and to show of the power and the awesome dynamics of gimbal BLDC motors :D  
 
 For now you can find the Arduino code and Solidworks files in the repo.
 
  <img src="images/balancer_exploaded.jpg">
 
 
-## Youtube videos of testing:
+## YouTube videos of testing:
 <p>
 <a href="https://www.youtube.com/watch?v=yYNtMmsb0SU" width="200"><img src="images/first_test.png" height="220px"></a>
 <a href="https://www.youtube.com/watch?v=VQK__kVl2ZM"><img src="images/chair_test.png" height="220px"></a>
