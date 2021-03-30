@@ -73,9 +73,33 @@ Examples | Description | Link | Price
 [<img src="https://docs.simplefoc.com/extras/Images/bgc31.jpg" height="100px">](https://www.ebay.com/itm/BGC-3-1-MOS-Large-Current-Two-Axis-Brushless-Gimbal-Controller-Driver-Alexmos/302692769869?hash=item4679e5204d:g:m9AAAOSweHtdzM8o)| BGC 3.1 | [More info](https://www.ebay.com/itm/BGC-3-1-MOS-Large-Current-Two-Axis-Brushless-Gimbal-Controller-Driver-Alexmos/302692769869?hash=item4679e5204d:g:m9AAAOSweHtdzM8o) | 10$
 [<img src="https://docs.simplefoc.com/extras/Images/strom.jpg" height="100px">](https://www.ebay.com/itm/Storm32-BGC-32Bit-3-Axis-Brushless-Gimbal-Controller-V1-32-DRV8313-Motor-Driver/174343022855?hash=item2897a76907:g:20YAAOSwbEhfBo28) | Storm32 BGC | [Ebay](https://www.ebay.com/itm/Storm32-BGC-32Bit-3-Axis-Brushless-Gimbal-Controller-V1-32-DRV8313-Motor-Driver/174343022855?hash=item2897a76907:g:20YAAOSwbEhfBo28) | 25$
 
-## MCU 
- yet to come
+## IMU
 
+I've used the IMU MPU6050 with integrated DMP. It is a great board, very cheap and very powerful. You can use any other accelerometer to make the balancing robot but you might need to do some coda adaptation, mostly in the `imu_helpers.cpp/h`.
+
+Examples | Description | Link | Price
+---- | ---- | ---- | ---
+[<img src="images/mpu6050.jpg" height="100px">](https://www.amazon.fr/ARCELI-MPU6050-Acc%C3%A9l%C3%A9rom%C3%A8tre-Gyroscope-Convertisseur/dp/B07BVXN2GP/ref=sr_1_5?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=mpu6050&qid=1617112879&sr=8-5)| MPU6050  | [Amazon](https://www.amazon.fr/ARCELI-MPU6050-Acc%C3%A9l%C3%A9rom%C3%A8tre-Gyroscope-Convertisseur/dp/B07BVXN2GP/ref=sr_1_5?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=mpu6050&qid=1617112879&sr=8-5) | 2-5$
+
+
+## Bluetooth module
+
+If using the `ESP32` based mcu you will not need an additional Bluetooth module. But if you decide to go with some other mcu, I advise you to use the `HC-05`/`HC-06` modules, they are very simple to use and will work out of the box with the code.
+
+Examples | Description | Link | Price
+---- | ---- | ---- | ---
+[<img src="images/hc06.png" height="100px">](https://www.amazon.fr/SunFounder-Wireless-Bluetooth-Transceiver-Backplane/dp/B00GAXG9A6/ref=sr_1_18?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=hc06&qid=1617113031&sr=8-18)| HC-06  | [Amazon](https://www.amazon.fr/SunFounder-Wireless-Bluetooth-Transceiver-Backplane/dp/B00GAXG9A6/ref=sr_1_18?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=hc06&qid=1617113031&sr=8-18) | 2-10$
+
+## Microcontroller
+
+In my example I've used EPS32 based microcontroller and the Stm32 based one but any type of the MCU that is supported by the *Simple**FOC**library* will do. [Click here](https://docs.simplefoc.com/microcontrollers) to see the documentation of the supported microcontrollers. 
+
+Examples | Description | Link | Price
+---- | ---- | ---- | ---
+[<img src="https://docs.simplefoc.com/extras/Images/d1_r32.jpg" height="100px">](https://simplefoc.github.io/simplefoc_shield_product)| WeMos D1 R32  | [More info](https://www.amazon.com/Arduino-Wireless-Bluetooth-Development-Memory/dp/B07W1K56LN/ref=sr_1_2?dchild=1&keywords=d1+r32&qid=1614849959&sr=8-2) | 10$
+[<img src="https://docs.simplefoc.com/extras/Images/nucleo.jpg" height="100px">](https://www.mouser.fr/ProductDetail/STMicroelectronics/NUCLEO-F446RE?qs=%2Fha2pyFaduj0LE%252BzmDN2WNd7nDNNMR7%2Fr%2FThuKnpWrd0IvwHkOHrpg%3D%3D)| Nucleo-64 F411RE | [More info](https://www.mouser.fr/ProductDetail/STMicroelectronics/NUCLEO-F446RE?qs=%2Fha2pyFaduj0LE%252BzmDN2WNd7nDNNMR7%2Fr%2FThuKnpWrd0IvwHkOHrpg%3D%3D) | 15$
+
+If using the gimbal controller boards such as BGC3.0/BGC3.1, Storm32 or similar you will do not bea able to change your microcontroller because it is integrated into the boards.
 ### Arduino code
 yet to come
 ## YouTube videos of testing:
