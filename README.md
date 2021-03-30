@@ -1,9 +1,11 @@
-# Arduino-FOC-balancer
-Arduino two wheel balancing robot based on simplefoc library. Full docs comming soon!
+# Arduino *Simple**FOC**Balancer*
+<img src="images/balancer_three.jpg">
+
+Modular Arduino two wheel balancing robot based on *Simple**FOC**library*. 
 
 For now you can find the Arduino code and Solidworks files in the repo.
 
-<img src="images/balancer_three.jpg" height="300px"> <img src="images/balancer_exploaded.jpg">
+ <img src="images/balancer_exploaded.jpg">
 
 
 ## Youtube videos of testing:
