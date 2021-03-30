@@ -7,7 +7,17 @@ Balancing robots are always a bit tricky to design, in order to make the robot b
 
 
 ## Readme structure
-
+- [Mechanical components](#mechanical-components)
+    - [ 3D printed parts](#3d-printed-parts)
+    - [Hardware parts](#hardware-parts)
+- [Electrical components](#electrical-components)
+    - [BLDC motor](#bldc-motor)
+    - [Position sensors](#position-sensors)
+    - [BLDC motor](#bldc-driver)
+    - [IMU module](#imu-module)
+    - [Bluetooth module](#bluetooth-module)
+    - [Microcontroller](#microcontroller)
+- [Arduino Code](#arduino-code)
 
 ## Mechanical components
 <img src="images/balancer_exploaded.jpg">
@@ -36,7 +46,7 @@ You will also find all the CAD files used in this project in the `CAD` folder. I
 I have designed the holes on the pendulum arm and the wheel to match perfectly the motor the encoders I was using, so please check the dimensions of your motors and encoder holes before printing 😄
 ***If you would prefer some other CAD format, let me know, maybe I can export it differently.***
 
-## Hardware parts
+### Hardware parts
 
 The mechanical components you will need are two sets of screws which you can easily find in your hardware store and the RC car tires that can be bought in bulk online. 
 
@@ -73,7 +83,7 @@ Examples | Description | Link | Price
 [<img src="https://docs.simplefoc.com/extras/Images/bgc31.jpg" height="100px">](https://www.ebay.com/itm/BGC-3-1-MOS-Large-Current-Two-Axis-Brushless-Gimbal-Controller-Driver-Alexmos/302692769869?hash=item4679e5204d:g:m9AAAOSweHtdzM8o)| BGC 3.1 | [More info](https://www.ebay.com/itm/BGC-3-1-MOS-Large-Current-Two-Axis-Brushless-Gimbal-Controller-Driver-Alexmos/302692769869?hash=item4679e5204d:g:m9AAAOSweHtdzM8o) | 10$
 [<img src="https://docs.simplefoc.com/extras/Images/strom.jpg" height="100px">](https://www.ebay.com/itm/Storm32-BGC-32Bit-3-Axis-Brushless-Gimbal-Controller-V1-32-DRV8313-Motor-Driver/174343022855?hash=item2897a76907:g:20YAAOSwbEhfBo28) | Storm32 BGC | [Ebay](https://www.ebay.com/itm/Storm32-BGC-32Bit-3-Axis-Brushless-Gimbal-Controller-V1-32-DRV8313-Motor-Driver/174343022855?hash=item2897a76907:g:20YAAOSwbEhfBo28) | 25$
 
-## IMU
+## IMU module
 
 I've used the IMU MPU6050 with integrated DMP. It is a great board, very cheap and very powerful. You can use any other accelerometer to make the balancing robot but you might need to do some coda adaptation, mostly in the `imu_helpers.cpp/h`.
 
