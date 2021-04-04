@@ -1,10 +1,15 @@
 # Arduino *Simple**FOC**Balancer*
 
-Exiting Arduino two wheel balancing robot based on gimbal BLDC motors and *Simple**FOC**library*.
+Modular Arduino two wheel balancing robot based on gimbal BLDC motors and *Simple**FOC**library*.
 <img src="images/balancer_three.jpg">
 
 Balancing robots are always a bit tricky to design, in order to make the robot balance we need to design and tune our mechanical structure and the control algorithm and, in the same time, choose optimal motors, sensors and microcontrollers. Therefore, even though BLDC motors are a great choice for balancing robots the complexity of their control made them undesirable. So this robot is an attempt to create a simple and modular, BLDC motor based, balancing robot that can be easily adapted for different *motor+sensor+mcu+driver* combinations and to show of the power and the awesome dynamics of gimbal BLDC motors 😄
 
+
+## YouTube video demo
+<a href="https://www.youtube.com/watch?v=f9GJqqUpL2w">
+<img src="images/balancer_yt.png">
+</a>
 
 ## Readme structure
 - [Mechanical components](#mechanical-components)
@@ -18,6 +23,8 @@ Balancing robots are always a bit tricky to design, in order to make the robot b
     - [Bluetooth module](#bluetooth-module)
     - [Microcontroller](#microcontroller)
 - [Arduino Code](#arduino-code)
+    - [Control algorithm](#control-algorithm)
+    - [Bluetooth remote control](#bluetooth-remote-control)
 
 ## Mechanical components
 <img src="images/balancer_exploaded.jpg">
@@ -110,10 +117,102 @@ Examples | Description | Link | Price
 [<img src="https://docs.simplefoc.com/extras/Images/nucleo.jpg" height="100px">](https://www.mouser.fr/ProductDetail/STMicroelectronics/NUCLEO-F446RE?qs=%2Fha2pyFaduj0LE%252BzmDN2WNd7nDNNMR7%2Fr%2FThuKnpWrd0IvwHkOHrpg%3D%3D)| Nucleo-64 F411RE | [More info](https://www.mouser.fr/ProductDetail/STMicroelectronics/NUCLEO-F446RE?qs=%2Fha2pyFaduj0LE%252BzmDN2WNd7nDNNMR7%2Fr%2FThuKnpWrd0IvwHkOHrpg%3D%3D) | 15$
 
 If using the gimbal controller boards such as BGC3.0/BGC3.1, Storm32 or similar you will do not bea able to change your microcontroller because it is integrated into the boards.
-### Arduino code
-yet to come
-## YouTube videos of testing:
-<p>
-<a href="https://www.youtube.com/watch?v=yYNtMmsb0SU" width="200"><img src="images/first_test.png" height="220px"></a>
-<a href="https://www.youtube.com/watch?v=VQK__kVl2ZM"><img src="images/chair_test.png" height="220px"></a>
-</p>
+## Arduino code
+
+still not complete
+
+### Control algorithm
+The control algorithm implemented in the Arduino sketch is very simple. It is a 2 PID controller cascade shown on the image bellow. 
+
+<img src="./images/scheme.png" height="300px">
+
+The PID stabilisation controller will make sure that any target angle that is defined by the PID velocity is reached as soon as possible. Where PID velocity will try to keep the balancer robot moving with desired velocity defined by the user. This simple scheme is very powerful because it will make the balancer stand still even if the balancer zero angle has some offset. 
+
+
+Here is the arduino code of the controller:
+```cpp
+// read pitch from the IMU
+float pitch = getPitchIMU();
+// calculate the target angle for throttle control
+float target_pitch = lpf_pitch_cmd(pid_vel((motor1.shaft_velocity + motor2.shaft_velocity) / 2 - lpf_throttle(throttle)));
+// calculate the target voltage
+float voltage_control = pid_stb(target_pitch - pitch);
+
+// filter steering
+float steering_adj = lpf_steering(steering);
+// set the tergat voltage value
+motor1.target = voltage_control + steering_adj;
+motor2.target = voltage_control - steering_adj;
+```
+The balancer velocity is estimated as average velocity for each wheel separately `(motor1.shaft_velocity + motor2.shaft_velocity) / 2`.  The target velocity is defined by the `throttle` variable set by the user. In addition to the `throttle` user can set the `steering` variable which will determine turning rate of the robot. The units of the `steering` variable are Volts in the provided example.
+
+The PID parameters and filtering values can be changed by changing the definition of the `pid_stb` and `pid_vel`:
+```cpp
+// control algorithm parameters
+// stabilisation pid
+PIDController pid_stb{.P = 30, .I = 100, .D = 1, .ramp = 100000, .limit = 7};
+// velocity pid
+PIDController pid_vel{.P = 0.01, .I = 0.03, .D = 0, .ramp = 10000, .limit = _PI / 10};
+// velocity control filtering
+LowPassFilter lpf_pitch_cmd{.Tf = 0.07};
+// low pass filters for user commands - throttle and steering
+LowPassFilter lpf_throttle{.Tf = 0.5};
+LowPassFilter lpf_steering{.Tf = 0.1};
+```
+
+
+
+### Bluetooth remote control
+
+For remote controlling your robot you can use any wireless communication you wish. In my case I've used bluetooth with mobile joystick app. There is really a lot of them and you can choose the one that you prefer. In my case I've used an app called Gibalo. [Link to the google play app](https://play.google.com/store/apps/details?id=hr.fer.android.as46486.gibalo&hl=en&gl=US)
+
+<img src="./images/gibalo.png" height="300px">
+
+Regardless of the communication protocol that you choose to use the only three variables that you need to change in the balancer code are 
+- `throttle` - target velocity of the balancer: value [-`max_throttle`, `max_throttle`] 
+- `steering` - turning rate command: value [-`max_steering`, `max_steering`]
+- `state` - `1` on,  `0` off
+
+For the Gibalo app the Arduino code will be:
+```cpp
+/**
+  Function intended for connecting to the Gibalo application
+  In one byte it receives either throttle or steering command
+  - if received byte  in range [0,200] then throttle command in between [-100, 100]
+  - if received byte  in range [210,250] then steering command in between [-20, 20]
+*/
+void handleBluetooth(Stream& bt_port) {
+  int inByte;
+  if (bt_port.available() > 0) {
+    while (bt_port.available()) {
+      inByte = bt_port.read();
+    }
+    inByte = inByte - 100;
+    if (inByte == 155) {
+      // ON Byte
+      steering = 0;
+      throttle = 0;
+      state = 1;
+      bt_port.println("State ON");
+    } else if (inByte == 154) {
+      // OFF Byte
+      steering = 0;
+      throttle = 0;
+      state = 0;
+      bt_port.println("State OFF");
+    } else if (inByte >= -100 && inByte <= 100) {
+      // throttle set-point Byte
+      throttle = max_throttle *  ((float)inByte) / 100.0;
+    } else if (inByte >= 110 && inByte <= 150) {
+      // steering set-point Byte
+      steering = max_steering * ((float)(inByte - 130.0)) / 20.0;
+    } else {
+      // Error Byte
+      steering = 0;
+      throttle = 0;
+      bt_port.println("Error number!");
+    }
+    bt_port.flush();
+  }
+}
+```
