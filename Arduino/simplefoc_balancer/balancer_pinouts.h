@@ -6,7 +6,7 @@
   #define MOT1_A 27    // 5
   #define MOT1_B 5     // 10
   #define MOT1_C 16    // 6
-  #define MOT1_En 12   // 8
+  #define MOT1_EN 12   // 8
   #define MOT2_A 18    // 3
   #define MOT2_B 25    // 9
   #define MOT2_C 13    // 11
