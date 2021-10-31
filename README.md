@@ -68,6 +68,7 @@ Component | Description | Link | Price
 ### BLDC motor
 The BLDC motors I was using in my video are an old versions of the [iPower GM4108](https://shop.iflight-rc.com/index.php?route=product/product&product_id=217&search=GM4108H-120T) motors which are not available anymore, in any case I was not able to find a website that would sell them. 
 The good news is that you can use basically any other gimbal motor in that class with only minor modifications, mostly in the CAD parts - change the mounting holes positions. Some of the motors I was able to find that would be the most similar to my motor would be:
+
 Component | Description | Link | Price
 ---- | ---- | ---- | ----
 <img src="https://raw.githubusercontent.com/simplefoc/Arduino-FOC-reaction-wheel-inverted-pendulum/master/images/gm4108.jpg" height="100px"> | iPower Motor GM4108H-120T | [iFlight webshop](https://shop.iflight-rc.com/index.php?route=product/product&product_id=217&search=GM4108H-120T) | 35$
@@ -77,6 +78,7 @@ Component | Description | Link | Price
 In my case I was using two encoders for the two motors. Now, this is very specific to my particular implementation, with minor CAD modifications you can use any type of the position sensor that is supported by the *Simple**FOC**library*. [Click here](https://docs.simplefoc.com/position_sensors) to see the documentation of the supported sensors. 
 
 The encoders I have used in this project are:
+
 <img src="https://raw.githubusercontent.com/simplefoc/Arduino-FOC-reaction-wheel-inverted-pendulum/master/images/AMT_103.jpg" height="100px"> | AMT103 CUI | [Mouser](https://eu.mouser.com/ProductDetail/CUI-Devices/AMT103-V?qs=WyjlAZoYn51X2GCrrvGQTg==T) | 20$
 ---- | ---- | ---- | ----
 
@@ -84,6 +86,7 @@ The encoders I have used in this project are:
 In this project I used the [*Simple**FOC**Shield* v2.0.3](https://docs.simplefoc.com/arduino_simplefoc_shield_showcase) which is basically an Arduino shield which enables the usage of the FOC algorithm with the BLDC motors. It is practically plug & play in combination with the Arduino [*Simple**FOC**library*](https://docs.simplefoc.com/arduino_simplefoc_library_showcase).
 
 But there is a lot of different boards that you can use to make this balancer. Basically any gimbal motor driver that is supported by the *Simple**FOC**library* will be suitable.  [Click here](https://docs.simplefoc.com/bldc_drivers) to see the documentation of the supported drivers. Here are some examples of the possible BLDC drives you could use:
+
 Examples | Description | Link | Price
 ---- | ---- | ---- | ---
 [<img src="https://simplefoc.com/assets/img/v2.jpg" height="100px">](https://simplefoc.github.io/simplefoc_shield_product)| *Simple**FOC**Shield* v1/v2 | [More info](https://simplefoc.github.io/simplefoc_shield_product) | 20$
