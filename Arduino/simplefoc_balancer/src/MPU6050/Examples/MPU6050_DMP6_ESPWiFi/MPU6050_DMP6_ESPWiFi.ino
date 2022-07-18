@@ -53,7 +53,7 @@ THE SOFTWARE.
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
-#include "../I2Cdev/I2Cdev.h"
+#include "I2Cdev.h"
 
 #include "MPU6050_6Axis_MotionApps20.h"
 //#include "MPU6050.h" // not necessary if using MotionApps include file
@@ -149,7 +149,7 @@ const unsigned int outPort = 9999;          // remote port to receive OSC
 // ================================================================
 
 volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
-void dmpDataReady() {
+void ICACHE_RAM_ATTR dmpDataReady() {
     mpuInterrupt = true;
 }
 

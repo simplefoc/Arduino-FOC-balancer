@@ -33,7 +33,7 @@ THE SOFTWARE.
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
-#include "../I2Cdev/I2Cdev.h"
+#include "I2Cdev.h"
 #include "MPU6050.h"
 
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
@@ -48,6 +48,7 @@ THE SOFTWARE.
 // AD0 high = 0x69
 MPU6050 accelgyro;
 //MPU6050 accelgyro(0x69); // <-- use for AD0 high
+//MPU6050 accelgyro(0x68, &Wire1); // <-- use for AD0 low, but 2nd Wire (TWI/I2C) object
 
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
@@ -148,4 +149,5 @@ void loop() {
     // blink LED to indicate activity
     blinkState = !blinkState;
     digitalWrite(LED_PIN, blinkState);
+    delay(100);
 }

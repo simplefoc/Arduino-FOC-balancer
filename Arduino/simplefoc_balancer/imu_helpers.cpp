@@ -1,6 +1,6 @@
 #include "imu_helpers.h"
 #include "./src/I2Cdev/I2Cdev.h"
-#include "./src/MPU6050/MPU6050_6Axis_MotionApps_V6_12.h"
+#include "./src/MPU6050/MPU6050_6Axis_MotionApps612.h"
 #include "Wire.h"
 
 // IMU instance

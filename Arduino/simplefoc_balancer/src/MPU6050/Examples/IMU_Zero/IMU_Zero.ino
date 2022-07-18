@@ -78,7 +78,7 @@ and so on.
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
-#include "../I2Cdev/I2Cdev.h"
+#include "I2Cdev.h"
 #include "MPU6050.h"
 
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
