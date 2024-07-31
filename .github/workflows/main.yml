@@ -12,5 +12,5 @@ jobs:
       with:
         arduino-boards-fqbn: esp32:esp32:esp32doit-devkit-v1 # esp32 
         platform-url: https://espressif.github.io/arduino-esp32/package_esp32_index.json
-        required-libraries: Simple FOC,BluetoothSerial
+        required-libraries: Simple FOC
         sketch-names: simplefoc_balancer.ino
