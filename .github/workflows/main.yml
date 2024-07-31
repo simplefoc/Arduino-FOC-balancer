@@ -11,3 +11,4 @@ jobs:
       uses: ArminJo/arduino-test-compile@master
       with:
         required-libraries: Simple FOC
+        sketch-names: simplefoc_balancer.ino
