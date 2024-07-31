@@ -1,8 +1,8 @@
-name: Sketch Compile
+name: Compile for ESP32
 on: push
 jobs:
   build:
-    name: Test compiling examples for UNO
+    name: Compile for ESP32
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
