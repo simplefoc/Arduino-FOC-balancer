@@ -10,5 +10,5 @@ jobs:
     - name: Compile all examples
       uses: ArminJo/arduino-test-compile@master
       with:
-        required-libraries: Simple FOC, BluetoothSerial
+        required-libraries: Simple FOC,BluetoothSerial
         sketch-names: simplefoc_balancer.ino
